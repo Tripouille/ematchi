@@ -13,7 +13,7 @@
 
 		size = level.size;
 
-        const pairs: string[] = [];
+		const pairs: string[] = [];
 		const emojisCopy = [...level.emojis];
 		for (let i = 0; i < level.size ** 2 / 2; i++) {
 			const randomIndex = Math.floor(Math.random() * emojisCopy.length);
@@ -24,16 +24,26 @@
 		grid = pairs.sort(() => Math.random() - 0.5);
 	}
 	initializeGame(currentLevelLabel);
+
+	let foundedEmoji: string[] = [];
+	function handleEmojiFound(event: any) {
+		foundedEmoji = foundedEmoji.concat(event.detail.emoji as string);
+	}
 </script>
 
 <div class="game">
 	<div class="info" />
 
 	<div class="grid-container">
-		<Grid {grid} />
+		<Grid {grid} on:emoji-found={handleEmojiFound} />
 	</div>
 
 	<div class="info" />
+	<p>
+		{#each foundedEmoji as emoji}
+			{emoji}
+		{/each}
+	</p>
 </div>
 
 <style>

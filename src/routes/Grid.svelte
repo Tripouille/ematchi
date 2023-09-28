@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Square from './Square.svelte';
+
+	const dispatcher = createEventDispatcher();
 
 	export let grid: string[];
 	let foundedSquareIndexes: number[] = [];
@@ -17,6 +20,7 @@
 		if (flippedSquareIndexes.length === 2) {
 			const [firstIndex, secondIndex] = flippedSquareIndexes;
 			if (grid[firstIndex] === grid[secondIndex]) {
+				dispatcher('emoji-found', { emoji: grid[firstIndex] });
 				foundedSquareIndexes = foundedSquareIndexes.concat(flippedSquareIndexes);
 			}
 			timeoutID = setTimeout(() => {
