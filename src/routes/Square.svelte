@@ -4,7 +4,6 @@
 	export let found: boolean;
 </script>
 
-{@debug flipped}
 <button class="square" class:flipped class:found disabled={found} on:click>
 	{emoji}
 </button>
