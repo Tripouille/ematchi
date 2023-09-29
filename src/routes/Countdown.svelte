@@ -3,7 +3,6 @@
 	export let duration: number;
 </script>
 
-{@debug duration}
 <div class="countdown">
 	<button>
 		<svg fill="gray" height="60" width="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

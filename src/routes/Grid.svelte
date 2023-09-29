@@ -49,5 +49,6 @@
 		gap: 0.2rem;
 		height: 100%;
 		padding: 0.2rem;
+		perspective: 150rem;
 	}
 </style>

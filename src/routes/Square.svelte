@@ -18,10 +18,22 @@
 		cursor: pointer;
 		max-width: 100%;
 		max-height: 100%;
+		transition: transform 0.5s;
+	}
+
+	img {
+		transform: rotateY(180deg);
+		transition: transform 0.5s;
+		backface-visibility: hidden;
+		position: absolute;
 	}
 
 	.flipped {
 		background-color: lemonchiffon;
+		transform: rotateY(180deg);
+		& > img {
+			transform: rotateY(0);
+		}
 	}
 
 	.found {
