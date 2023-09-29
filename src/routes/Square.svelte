@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let emoji: string;
+	export let pokemonID: number;
 	export let flipped: boolean;
 	export let found: boolean;
 </script>
 
 <button class="square" class:flipped class:found disabled={found} on:click>
-	{emoji}
+	<img height="100" width="100" src={`/svg/${pokemonID}.svg`} alt="" />
 </button>
 
 <style>
@@ -16,6 +16,8 @@
 		place-items: center;
 		font-size: 4rem;
 		cursor: pointer;
+		max-width: 100%;
+		max-height: 100%;
 	}
 
 	.flipped {

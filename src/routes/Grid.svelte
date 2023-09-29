@@ -4,7 +4,7 @@
 
 	const dispatcher = createEventDispatcher();
 
-	export let grid: string[];
+	export let grid: number[];
 	let foundedSquareIndexes: number[] = [];
 	let flippedSquareIndexes: number[] = [];
 	let timeoutID: number;
@@ -31,9 +31,9 @@
 </script>
 
 <div class="grid">
-	{#each grid as emoji, i}
+	{#each grid as pokemonID, i}
 		<Square
-			{emoji}
+			{pokemonID}
 			on:click={() => flipSquare(i)}
 			flipped={flippedSquareIndexes.includes(i)}
 			found={foundedSquareIndexes.includes(i)}

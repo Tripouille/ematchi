@@ -6,18 +6,21 @@
 
 	const currentLevelLabel: Level['label'] = 'easy';
 
-	let grid: string[] = [];
+	let grid: number[] = [];
 
 	function initializeGame(levelLabel: Level['label']) {
 		const level = levels.find((l) => l.label === levelLabel);
 		if (!level) throw new Error(`Level ${levelLabel} not found`);
 
-		const pairs: string[] = [];
-		const emojisCopy = [...level.emojis];
+		const pairs: number[] = [];
 		for (let i = 0; i < level.size ** 2 / 2; i++) {
-			const randomIndex = Math.floor(Math.random() * emojisCopy.length);
-			pairs.push(emojisCopy[randomIndex]);
-			emojisCopy.splice(randomIndex, 1);
+			let randomIndex;
+
+			do {
+				randomIndex = Math.floor(Math.random() * 200);
+			} while (pairs.includes(randomIndex));
+
+			pairs.push(randomIndex);
 		}
 		pairs.push(...pairs);
 		grid = pairs.sort(() => Math.random() - 0.5);
@@ -37,8 +40,8 @@
 
 		function loop() {
 			if (remaining <= 0) return;
-			requestAnimationFrame(loop);
 			remaining = duration - (Date.now() - startDate) / 1000;
+			requestAnimationFrame(loop);
 		}
 		loop();
 	}
