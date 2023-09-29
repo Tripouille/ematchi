@@ -19,7 +19,7 @@
 
 		if (flippedSquareIndexes.length === 2) {
 			const [firstIndex, secondIndex] = flippedSquareIndexes;
-			if (grid[firstIndex] === grid[secondIndex]) {
+			if (grid[firstIndex] === grid[secondIndex] && firstIndex !== secondIndex) {
 				dispatcher('emoji-found', { emoji: grid[firstIndex] });
 				foundedSquareIndexes = foundedSquareIndexes.concat(flippedSquareIndexes);
 			}
