@@ -1,42 +1,70 @@
 <script lang="ts">
+	import { send } from './transitions';
+
 	export let pokemonID: number;
 	export let flipped: boolean;
 	export let found: boolean;
+	export let group: 'a' | 'b';
 </script>
 
-<button class="square" class:flipped class:found disabled={found} on:click>
-	<img height="100" width="100" src={`/svg/${pokemonID}.svg`} alt="" />
-</button>
+<div class="square" class:flipped={flipped || found}>
+	<button on:click disabled={flipped || found} />
+
+	{#if !found}
+		<img
+			height="150"
+			width="150"
+			alt=""
+			src={`/svg/${pokemonID}.svg`}
+			out:send={{ key: `${pokemonID}-${group}` }}
+		/>
+	{/if}
+</div>
 
 <style>
 	.square {
-		background-color: white;
-		border: 1px solid gray;
 		display: grid;
 		place-items: center;
-		font-size: 4rem;
-		cursor: pointer;
-		max-width: 100%;
-		max-height: 100%;
-		transition: transform 0.5s;
+		transition: filter 0.2s;
+		transform-style: preserve-3d;
+		transform: rotateY(180deg);
+		transition: transform 0.4s;
+		border: 1px solid gray;
+		border-radius: 1rem;
 	}
 
-	img {
-		transform: rotateY(180deg);
-		transition: transform 0.5s;
+	.square * {
 		backface-visibility: hidden;
+	}
+
+	button {
 		position: absolute;
+		width: 100%;
+		height: 100%;
+		border: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: lemonchiffon;
+		border-radius: 1em;
+		transform: rotateY(180deg);
+		-webkit-tap-highlight-color: transparent;
+		cursor: pointer;
+	}
+
+	button:disabled {
+		color: inherit;
 	}
 
 	.flipped {
-		background-color: lemonchiffon;
-		transform: rotateY(180deg);
-		& > img {
-			transform: rotateY(0);
-		}
+		transform: none;
 	}
 
-	.found {
-		background-color: lightgreen;
+	img {
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1;
+		padding: 1rem;
+		object-fit: contain;
 	}
 </style>

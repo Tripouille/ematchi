@@ -37,6 +37,7 @@
 			on:click={() => flipSquare(i)}
 			flipped={flippedSquareIndexes.includes(i)}
 			found={foundedSquareIndexes.includes(i)}
+			group={grid.findIndex((id) => id === pokemonID) === i ? 'a' : 'b'}
 		/>
 	{/each}
 </div>

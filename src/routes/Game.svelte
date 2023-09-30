@@ -3,6 +3,7 @@
 	import Countdown from './Countdown.svelte';
 	import Grid from './Grid.svelte';
 	import { levels, type Level } from './levels.js';
+	import { receive } from './transitions';
 
 	const currentLevelLabel: Level['label'] = 'easy';
 
@@ -53,17 +54,31 @@
 	<div class="info">
 		<Countdown {duration} {remaining} />
 	</div>
-
-	<div class="grid-container">
-		<Grid {grid} on:emoji-found={handleEmojiFound} />
+	<div class="main-container">
+		<div class="founded-pokemons">
+			{#each foundedEmoji as pokemonID}
+				<div class="founded-pokemon">
+					<img
+						in:receive={{ key: `${pokemonID}-a` }}
+						height="75"
+						width="75"
+						src={`/svg/${pokemonID}.svg`}
+						alt=""
+					/>
+					<img
+						in:receive={{ key: `${pokemonID}-b` }}
+						height="75"
+						width="75"
+						src={`/svg/${pokemonID}.svg`}
+						alt=""
+					/>
+				</div>
+			{/each}
+		</div>
+		<div class="grid-container">
+			<Grid {grid} on:emoji-found={handleEmojiFound} />
+		</div>
 	</div>
-
-	<div class="info" />
-	<p>
-		{#each foundedEmoji as pokemonID}
-			<img height="100" width="100" src={`/svg/${pokemonID}.svg`} alt="" />
-		{/each}
-	</p>
 </div>
 
 <style>
@@ -78,12 +93,38 @@
 	.info {
 		width: 80vmin;
 		aspect-ratio: 8;
-		max-width: 700px;
 	}
 
 	.grid-container {
 		width: 80vmin;
-		aspect-ratio: 1;
-		max-width: 700px;
+	}
+
+	.founded-pokemons {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		border-radius: 1rem;
+		padding: 1rem;
+		flex: 1;
+	}
+
+	.founded-pokemon {
+		position: relative;
+		width: 100px;
+		height: 100px;
+		& > img {
+			position: absolute;
+			inset: 0;
+		}
+	}
+
+	.main-container {
+		width: 80vmin;
+		max-height: 80vmin;
+		display: grid;
+		grid-template-columns: 100px 5fr;
+		gap: 1rem;
 	}
 </style>
