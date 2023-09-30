@@ -38,6 +38,5 @@
 
 	.found {
 		background-color: lightgreen;
-		cursor: default;
 	}
 </style>

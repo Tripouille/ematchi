@@ -17,7 +17,7 @@
 			let randomIndex;
 
 			do {
-				randomIndex = Math.floor(Math.random() * 200);
+				randomIndex = Math.ceil(Math.random() * 200);
 			} while (pairs.includes(randomIndex));
 
 			pairs.push(randomIndex);
@@ -60,8 +60,8 @@
 
 	<div class="info" />
 	<p>
-		{#each foundedEmoji as emoji}
-			{emoji}
+		{#each foundedEmoji as pokemonID}
+			<img height="100" width="100" src={`/svg/${pokemonID}.svg`} alt="" />
 		{/each}
 	</p>
 </div>
