@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@fontsource/grandstander': ^5.0.12
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/kit': ^1.20.4
   '@types/node': ^20.7.2
@@ -19,6 +20,7 @@ specifiers:
   vite: ^4.4.2
 
 dependencies:
+  '@fontsource/grandstander': 5.0.12
   sass: 1.68.0
 
 devDependencies:
@@ -287,6 +289,10 @@ packages:
     resolution: {integrity: sha512-NCC3zz2+nvYd+Ckfh87rA47zfu2QsQpvc6k1yzTk+b9KzRj0wkGa8LSoGOXN6Zv4lRf/EIoZ80biDh9HOI+RNQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource/grandstander/5.0.12:
+    resolution: {integrity: sha512-21qamG7AGrmUYb9mRiWzA4+DxRHWCcDKbW9BclTYOSon/5iRF/p9n3lrSt5SgI02BeKsWRMRztA3b+0kDdayXg==}
+    dev: false
 
   /@humanwhocodes/config-array/0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}

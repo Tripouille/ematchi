@@ -30,6 +30,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/grandstander": "^5.0.12",
 		"sass": "^1.68.0"
 	}
 }
